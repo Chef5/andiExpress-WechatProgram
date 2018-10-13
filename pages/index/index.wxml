@@ -1,0 +1,115 @@
+<!--pages/index/index.wxml-->
+
+<view class="page">
+  <view class='page__hd'>
+    <swiper autoplay="true" duration="1000" indicator-dots="true" interval="5000">
+      <swiper-item>
+        <image src="../../image/1.jpg" class="slide-image"></image>
+      </swiper-item>
+      <swiper-item>
+        <image src="../../image/1.jpg" class="slide-image"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class='page__bd'>
+    <view class='weui-cell__title'>订单信息</view>
+    <view class='weui-cells weui-cells_after-title' bindtap='addClick'>
+      <view class='weui-cell__hd'>
+        <view>收货地址：</view>
+      </view>
+      <view class='weui-cell__bd'>
+        <input class='weui-input' placeholder='点击添加收货地址哦~'  >{{address}}</input>
+      </view>
+    </view>
+    
+
+
+    <view wx:for="{{lists}}" wx:key="{{lists.index}}"  wx:for-item="listitem">
+
+        <view class="weui-cells weui-cells_after-title">
+        <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">快递点：</view>
+          <picker bindchange="bindPickerChange1" data-id='{{listitem.id}}' value="{{listitem.index1}}" range="{{location}}"  class="weui-cell__ft">
+            <view class='weui-input'>{{location[listitem.index1]}}</view>
+          </picker>
+        </navigator>
+
+        <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">重量：</view>
+          <picker bindchange='bindPickerChange2' data-id='{{listitem.id}}' value='{{listitem.index2}}' range='{{weight}}' class="weui-cell__ft ">
+            <view class='weui-input'>{{weight[listitem.index2]}}</view>
+          </picker>
+        </navigator>
+      </view>
+      <view class='weui-cells weui-cells_after-title'>
+        <view class='weui-cell weui-cell_input'>
+          <view class='weui-cell__hd'>
+            <view>取件编号：</view>
+          </view>
+          <view class='weui-cell__bd'>
+            <input class='weui-input_code' placeholder='请输入取件编号，认真核对'></input>
+          </view>
+        </view>
+      </view>
+      <view class='weui-cells weui-cells_after-title'>
+        <view class='weui-cell weui-cell_input'>
+          <view class='weui-cell__hd'>
+            <view>取件备注：</view>
+          </view>
+          <view class='weui-cell__bd'>
+            <textarea class='weui-textarea' placeholder='粘贴短信内容，或备注相关重要信息' style='height:180rpx'></textarea>
+          </view>
+        </view>
+      </view>
+      <view class='weui-cells weui-cells_after-title'>
+        <button class='delete' bindtap='delList' data-id='{{listitem.id}}' size='mini'>
+        <image src='../../image/delete(1).png' class='images'></image>
+          删除</button> 
+      </view>
+
+      
+
+
+    </view>
+
+
+
+
+    <view class='list_one'>
+      <view class='weui-cells wei-cells_after-title'>
+        <view class='weui-cell '>
+          <button  size='mini' bindtap='addList'>
+            <image src='../../image/add contacts.png' class='images'></image>
+            添加订单</button> 
+
+        </view>
+      </view>
+    </view>
+
+
+
+
+
+
+
+
+    <view class='list_three'>
+
+       <view class='weui-cells weui-cells_after-title'>
+        <view class='weui-cell'>
+          <image src='../../image/money-bag.png' class='images'></image>
+          结算
+        </view>
+        <view class=''></view>
+      </view>
+
+
+
+      <view class='flex-row' style='display:flex'>
+        <button form-type='submit' size='mini' class='button'>提交订单并支付</button>
+      </view>
+    </view>
+
+
+  </view>
+</view>

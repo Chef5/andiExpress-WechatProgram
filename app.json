@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mine/mine",
+    "pages/myorder/myorder",
+    "pages/location/location",
+    "pages/addlocation/addlocation"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000033",
+    "navigationBarTitleText": "下单",
+    "navigationBarTextStyle": "write"
+  },
+  "tabBar": {
+    "color": "grey",
+    "selectedColor": "#000033",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "image/add(1).png",
+        "iconPath": "image/add.png",
+        "pagePath": "pages/index/index",
+        "text": "下单"
+      },
+      {
+        "selectedIconPath": "image/mine(1).png",
+        "iconPath": "image/mine.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  }
+}

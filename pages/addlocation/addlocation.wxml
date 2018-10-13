@@ -1,0 +1,35 @@
+<!--pages/addlocation/addlocation.wxml-->
+<view class='page'>
+  
+     <view class='weui-cells weui-cells_after-title'>
+        <view class='weui-cell weui-cell_input'>
+          <view class='weui-cell_hd'>
+            姓名：<input class='weui-input_code'></input>
+          </view>
+        </view>
+        <view class='weui-cell weui-cell_input'>
+          <view class='weui-cell_hd'>
+            手机：<input class='weui-input_code'></input>
+          </view>
+        </view>
+        <view class='weui-cell weui-cell_input'>
+          <view class='weui-cell_hd'>
+            学校：<input class='weui-input_code'></input>
+          </view>
+        </view>
+        <view class='weui-cell weui-cell_input'>
+          <view class='weui-cell_hd'>
+            楼栋：<input class='weui-input_code'></input>
+          </view>
+        </view>
+        <view class='weui-cell weui-cell_input'>
+          <view class='weui-cell_hd'>
+            宿舍：<input class='weui-input_code' placeholder='请输入宿舍号哦~'></input>
+          </view>
+        </view>
+   </view>
+</view>
+   
+
+
+ 

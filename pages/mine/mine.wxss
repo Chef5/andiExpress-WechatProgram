@@ -1,0 +1,51 @@
+/**mine.wxss**/
+.page{
+  background-color: rgba(245, 241, 241, 0.904);
+}
+navigator{
+  font-size: 13px;
+}
+.hd{
+  height: 160px;
+  background-color: #000033;
+  color: white;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.head,.head-name{
+  display: flex;
+}
+.head{
+  margin-top: 30px;
+}
+.page_bd{
+  margin-top: 20px;
+  font-size: 15px;
+}
+.list_one{
+  background-color: white;
+}
+.list_two{
+  margin-top: 15px;
+  background-color: white;
+}
+.list_three{
+  margin-top: 15px;
+  background-color: white;
+}
+.images{
+  width: 25px;
+  height: 25px;
+  margin-top:5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.head{
+  background: rgba(255, 0, 0, 0.377);
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}

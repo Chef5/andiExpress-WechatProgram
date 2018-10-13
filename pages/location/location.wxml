@@ -1,0 +1,34 @@
+<!--pages/location/location.wxml-->
+<view class='pages'>
+  <view class='page_hd'>
+      <view class='address' wx:for="{{myaddress}}" wx:key="{{item}}"> 
+       <text class='name'>{{item.name}}</text>
+       <text class='Tel'>{{item.Tel}}</text>
+       <view class='myaddress'>{{item.address}}</view>
+      </view>
+  </view>
+  <view class='page_bd'>
+    <button plain='true' size='mini' bindtap='addClick' class='button'>
+            <image src='../../image/add contacts.png' class='images'></image>
+            新增地址</button> 
+  </view>
+  <modal hidden="{{hideedit}}" title="收货地址修改" confirm-text="完成" bindconfirm="editcomplete" no-cancel='true'>
+    <form bindsubmit="editconfirm" >
+      <input type="hidden" hidden='true' name="id" value="{{editid}}" ></input>
+      <view><label>姓名：</label><input name='name' value='{{editname}}' maxlength='4'></input></view>
+      <view><label>手机：</label><input name='phone' value='{{editphone}}' maxlength='11'></input></view>
+      <view><label>密码：</label><input name='passwd' value='{{editpasswd}}'></input></view>
+      <button form-type='submit' type='primary' class='comfirm-submit' >确认修改</button>
+    </form>
+  </modal>
+  <modal hidden="{{hideadd}}" title="新增收货地址" confirm-text="完成" bindconfirm="addcomplete" no-cancel='true'>
+    <form bindsubmit="addconfirm" >
+      <view><label>姓名：</label><input name='name' maxlength='4'></input></view>
+      <view><label>手机：</label><input name='phone' maxlength='11'></input></view>
+      <view><label>校区：</label> </view>
+      <view><label>楼栋：</label> </view>
+      <view><label>宿舍：</label> </view>
+      <button form-type='submit' type='primary' class='comfirm-submit' >添加</button>
+    </form>
+  </modal>
+</view>
