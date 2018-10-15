@@ -5,7 +5,8 @@
     "pages/mine/mine",
     "pages/myorder/myorder",
     "pages/location/location",
-    "pages/addlocation/addlocation"
+    "pages/addlocation/addlocation",
+    "pages/changeschool/changeschool"
   ],
   "window": {
     "backgroundTextStyle": "light",

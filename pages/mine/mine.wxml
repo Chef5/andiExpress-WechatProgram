@@ -20,7 +20,7 @@
         <view class='weui-cell__bd'>我的订单</view>
         <view class='weui-cell__ft weui-cell__ft_in-access'></view>
       </navigator>
-      <navigator class="weui-cell weui-cell_access_myorder" hover-class="weui-cell_active">
+      <navigator url='../changeschool/changeschool' class="weui-cell weui-cell_access_myorder" hover-class="weui-cell_active">
         <image src='../../image/uut-remainingsum.png' class='images'></image>
         <view class='weui-cell__bd'>校区设置</view>
         <view class='weui-cell__ft weui-cell__ft_in-access'>{{account}}</view>
