@@ -59,6 +59,22 @@ view{
   background-color: #000035c2;
   color: whitesmoke;
 }
+.jiesuan{
+  display: flex;
+  flex-direction: row;
+}
+.jisuan_money{
+  position: absolute;
+  right: 50rpx;
+  line-height: 50px;
+  vertical-align: middle;
+}
+.jisuan_money text{
+  color: red;
+  font-weight: 700;
+  display: inline-block;
+  margin-left: 10rpx;
+}
 
 
 

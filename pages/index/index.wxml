@@ -36,8 +36,8 @@
 
         <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__bd">重量：</view>
-          <picker bindchange='bindPickerChange2' data-id='{{listitem.id}}' value='{{listitem.index2}}' range='{{weight}}' class="weui-cell__ft ">
-            <view class='weui-input'>{{weight[listitem.index2]}}</view>
+          <picker bindchange='bindPickerChange2' data-id='{{listitem.id}}' value='{{listitem.index2}}' range='{{weight}}' range-key="item" class="weui-cell__ft ">
+            <view class='weui-input'>{{weight[listitem.index2].item}}</view>
           </picker>
         </navigator>
       </view>
@@ -95,18 +95,18 @@
 
     <view class='list_three'>
 
-       <view class='weui-cells weui-cells_after-title'>
+       <view class='weui-cells weui-cells_after-title jiesuan'>
         <view class='weui-cell'>
           <image src='../../image/money-bag.png' class='images'></image>
           结算
         </view>
-        <view class=''></view>
+        <view class='jisuan_money'>订单金额:<text>{{summoney}}元</text></view>
       </view>
 
 
 
       <view class='flex-row' style='display:flex'>
-        <button form-type='submit' size='mini' class='button'>提交订单并支付</button>
+        <button form-type='submit' size='mini' class='button' bindtap='ordersub'>提交订单并支付</button>
       </view>
     </view>
 
