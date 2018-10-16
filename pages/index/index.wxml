@@ -23,23 +23,23 @@
     </view>
     
 
-
+    <form bindsubmit='getorderinfo'>
     <view wx:for="{{lists}}" wx:key="{{lists.index}}"  wx:for-item="listitem">
 
         <view class="weui-cells weui-cells_after-title">
-        <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__bd">快递点：</view>
           <picker bindchange="bindPickerChange1" data-id='{{listitem.id}}' value="{{listitem.index1}}" range="{{location}}"  class="weui-cell__ft">
             <view class='weui-input'>{{location[listitem.index1]}}</view>
           </picker>
-        </navigator>
+        </view>
 
-        <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__bd">重量：</view>
           <picker bindchange='bindPickerChange2' data-id='{{listitem.id}}' value='{{listitem.index2}}' range='{{weight}}' range-key="item" class="weui-cell__ft ">
             <view class='weui-input'>{{weight[listitem.index2].item}}</view>
           </picker>
-        </navigator>
+        </view>
       </view>
       <view class='weui-cells weui-cells_after-title'>
         <view class='weui-cell weui-cell_input'>
@@ -47,7 +47,7 @@
             <view>取件编号：</view>
           </view>
           <view class='weui-cell__bd'>
-            <input class='weui-input_code' placeholder='请输入取件编号，认真核对'></input>
+            <input class='weui-input_code' name='code{{listitem.id}}' placeholder='请输入取件编号，认真核对'></input>
           </view>
         </view>
       </view>
@@ -57,7 +57,7 @@
             <view>取件备注：</view>
           </view>
           <view class='weui-cell__bd'>
-            <textarea class='weui-textarea' placeholder='粘贴短信内容，或备注相关重要信息' style='height:180rpx'></textarea>
+            <textarea class='weui-textarea' name='other{{listitem.id}}' placeholder='粘贴短信内容，或备注相关重要信息(取件手机尾号默认为收货地址所填的手机号，若有不同，请备注)' style='height:180rpx'></textarea>
           </view>
         </view>
       </view>
@@ -71,6 +71,7 @@
 
 
     </view>
+    
 
 
 
@@ -106,10 +107,12 @@
 
 
       <view class='flex-row' style='display:flex'>
-        <button form-type='submit' size='mini' class='button' bindtap='ordersub'>提交订单并支付</button>
+        <!-- <button form-type='submit' size='mini' class='button' bindtap='ordersub'>提交订单并支付</button> -->
+        <button form-type='submit' size='mini' class='button' >提交订单并支付</button>
       </view>
     </view>
 
+    </form>
 
   </view>
 </view>
