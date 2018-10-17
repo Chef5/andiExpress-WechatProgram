@@ -1,15 +1,27 @@
 <!--pages/location/location.wxml-->
 <view class='pages'>
   <view class='page_hd'>
+    <radio-group bindchange="radioChange"> 
       <view class='address' wx:for="{{myaddress}}" wx:key="{{item}}"> 
-       <text class='name'>{{item.name}}</text>
-       <text class='Tel'>{{item.Tel}}</text>
-       <view class='myaddress'>{{item.address}}</view>
+         <radio value='address' class='radio' />
+         <text class='name'>{{item.name}}</text>
+         <text class='Tel'>{{item.Tel}}</text>
+         <view class='myaddress'>{{item.address}}</view>
+         
       </view>
+      <view class='address' wx:for="{{myaddress}}" wx:key="{{item}}"> 
+        <radio value='address' class='radio' />
+         <text class='name'>{{item.name}}</text>
+         <text class='Tel'>{{item.Tel}}</text>
+         <view class='myaddress'>{{item.address}}</view>
+         
+      </view>
+    </radio-group>
+     
   </view>
   <view class='page_bd'>
     <button plain='true' size='mini' bindtap='addClick' class='button'>
-            <image src='../../image/add contacts.png' class='images'></image>
+            <image src='../../image/addorder.png' class='images'></image>
             新增地址</button> 
   </view>
   <modal hidden="{{hideedit}}" title="收货地址修改" confirm-text="完成" bindconfirm="editcomplete" no-cancel='true'>

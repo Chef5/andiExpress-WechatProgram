@@ -1,41 +1,107 @@
 <!--pages/myorder/myorder.wxml-->
-<!--
-顶部导航
-        -->
-<view class='page'>
-  <view class='page_hd'>
-       <view class="swiper-tab">
-    <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">待付款</view>
-    <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">未配送</view>
-     <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">已完成</view>
-  </view>
-  <swiper class='swiper' current='{{currentTab}}' duration='200' bindchange='swiperChange'>
-      <swiper-item>
-          <navigator class='myorder'>
-              <view class='content'   wx:for="{{lists}}" wx:key="{{index}}">
-                  <image src='../../image/mine.png' ></image>
-                  <view class='order'wx:for="{{myorder}}" wx:key="{{item}}">
-                        <view class='orderNO'>订单号: {{item.oid}}
-                       
-                        </view>
-                        <!--
-                        <text class='name'>姓名:{{item.oname}}</text>-->
-                        <view class='message'>详细信息: {{item.message}}</view>
-                        
-                         <view class='time'>{{item.otime}}</view>
-                         <button class='delete' bindtap='delList' size='mini'>删除</button>
-                  </view>
-                 
 
+
+  <view class='page_hd'>
+    <!--导航条-->
+    <view class="navbar">
+      <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+    </view>
+
+    <!--待付款-->
+    <view hidden="{{currentTab!==0}}">
+    <view class='item'>
+        
+        <view class='myorder' wx:for="{{orders}}" wx:key="{{orders.index}}" wx:for-item="ordersitem">
+
+          <view class='order border' wx:for="{{myorder}}" wx:key="{{item}}">
+            <view class='weui-cells weui-cells_after-title'></view>
+            <view class='weui-cell__hd_orderNo'>
+              订单号:{{item.oid}}
+              <text class='time'>{{item.otime}}</text>
+            </view>
+            <view class='weui-cell__bd'>
+              <view class='message'> {{item.message}}</view>
+              <view class='paying'>
+                <image src='../../image/money.png'></image>支付金额：
               </view>
-          </navigator>
-      </swiper-item>  
-       <swiper-item>
-          <view>2</view>
-      </swiper-item>  
-       <swiper-item>
-          <view>3</view>
-      </swiper-item>  
-  </swiper>
+            </view>
+            <button bindtap='' size='mini' class='btn1'>确认支付</button>
+            <button bindtap='delList' data-id='{{ordersitem.id}}' size='mini' class='btn2'>删除</button>
+          </view>
+
+        </view>
+
+        <view class='myorder' wx:for="{{orders}}" wx:key="{{orders.index}}" wx:for-item="ordersitem">
+
+          <view class='order border' wx:for="{{myorder}}" wx:key="{{item}}">
+            <view class='weui-cells weui-cells_after-title'></view>
+            <view class='weui-cell__hd_orderNo'>
+              订单号:{{item.oid}}
+              <text class='time'>{{item.otime}}</text>
+            </view>
+            <view class='weui-cell__bd'>
+              <view class='message'> {{item.message}}</view>
+              <view class='paying'>
+                <image src='../../image/money.png'></image>支付金额：
+              </view>
+            </view>
+            <button bindtap='' size='mini' class='btn1'>确认支付</button>
+            <button bindtap='delList' data-id='{{ordersitem.id}}' size='mini' class='btn2'>删除</button>
+          </view>
+
+        </view>
+   
+    </view>
+      
+      
+    </view>
+
+    <!--未配送-->
+    <view hidden="{{currentTab!==1}}">
+
+      <view class='myorder' wx:for="{{orders}}" wx:key="{{orders.index}}" wx:for-item="ordersitem">
+
+          <view class='order border' wx:for="{{myorder}}" wx:key="{{item}}">
+            <view class='weui-cells weui-cells_after-title'></view>
+            <view class='weui-cell__hd_orderNo'>
+              订单号:{{item.oid}}
+              <text class='time'>{{item.otime}}</text>
+            </view>
+            <view class='weui-cell__bd'>
+              <view class='message'> {{item.message}}</view>
+              <view class='paying'>
+                <image src='../../image/money.png'></image>支付金额：
+              </view>
+            </view>
+            <button bindtap='delList' data-id='{{ordersitem.id}}' size='mini' class='btn2 btnn'>删除</button>
+          </view>
+          
+        </view>
+
+    </view>
+
+    <!--已完成-->
+    <view hidden="{{currentTab!==2}}">
+      
+        <view class='myorder' wx:for="{{orders}}" wx:key="{{orders.index}}" wx:for-item="ordersitem">
+
+          <view class='order border' wx:for="{{myorder}}" wx:key="{{item}}">
+            <view class='weui-cells weui-cells_after-title'></view>
+            <view class='weui-cell__hd_orderNo'>
+              订单号:{{item.oid}}
+              <text class='time'>{{item.otime}}</text>
+            </view>
+            <view class='weui-cell__bd'>
+              <view class='message'> {{item.message}}</view>
+              <view class='paying'>
+                <image src='../../image/money.png'></image>支付金额：
+              </view>
+            </view>
+            <button bindtap='delList' data-id='{{ordersitem.id}}' size='mini' class='btn2 btnn'>删除</button>
+          </view>
+          
+        </view>
+
+    </view>
+
   </view>
-</view>

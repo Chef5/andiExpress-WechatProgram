@@ -1,40 +1,96 @@
 /* pages/myorder/myorder.wxss */
-.page{
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-}
-.swiper-tab{
-  display: flex;
-  flex-direction: row;
-  line-height: 80px;
- 
-}
-.tab-item{
-  width: 33.3%;
-  text-align: center;
-  font-size:15px;
-}
-.on{
-  color: navy;
-  border-bottom:5rpx solid navy; 
+page{ 
+ display: flex; 
+ flex-direction: column; 
+ height: 100%; 
+} 
+.navbar{ 
+ flex: none; 
+ display: flex; 
+ background: #fff; 
+} 
+.navbar .item{ 
+ position: relative; 
+ flex: auto; 
+ text-align: center; 
+ line-height: 80rpx; 
+} 
+.navbar .item.active{ 
+ color:  #000035; 
+} 
+.navbar .item.active:after{ 
+ content: ""; 
+ display: block; 
+ position: absolute; 
+ bottom: 0; 
+ left: 0; 
+ right: 0; 
+ height: 4rpx; 
+ background: #000035; 
+} 
+.item{
+  margin-top: 30rpx;
 }
 .myorder{
-  height: 80px;
-  background-color: bisque;
+  margin-top: 60rpx;
+  height: 200rpx;
   font-size: 28rpx;
 }
-image{
-  margin: 10px 0px 10px 0px;
-  width: 45px;
-  height: 45px;
+.border{
+   height: 240rpx;
+  color: #000035;
+  border-left: 10rpx solid  #000035; 
 }
-.order{
-  margin:-60px 0 10px 55px; 
+
+.weui-cell__hd_orderNo{
+  padding-top: 10rpx;
+  padding-left: 25rpx;
+  font-size: 25rpx;
+  color: rgb(172, 168, 168);
+  border-bottom: 1rpx solid #C3C0C0;
 }
 .time{
    font-size: 25rpx;
-    margin-left: 10px;
+   margin-left: 130rpx;
+   color: rgb(155, 151, 151); 
 }
-button{
-  
+.weui-cell__bd{ 
+  margin-top: 10rpx;
+  padding-left: 40rpx;
+}
+.message{
+  font-weight: bold;
+  color: black;
+}
+.paying{
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+   color: black;
+}
+image{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.btn1{
+  margin-top: 6rpx;
+  margin-left: 300rpx;
+  margin-right: 30rpx;
+  border: 1rpx solid #000035c2;
+  color: #000035c2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.btn2{
+  margin-right: 30rpx;
+  border: 1rpx solid #000002c2;
+  color: #000002c2;
+
+}
+.btnn{
+   margin-top: 6rpx;
+  margin-left: 500rpx;
+  margin-right: 30rpx;
 }
