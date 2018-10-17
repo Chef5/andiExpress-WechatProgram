@@ -7,6 +7,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo: {},
     hasUserInfo: false,
+    huancun: 0,
   },
 
   bindGetUserInfo(e) {
@@ -19,11 +20,11 @@ Page({
         wx.request({
           url: 'https://test.1zdz.cn/andi/api/wxlogin.php',
           method: 'POST',
-          data:{
+          data: {
             wxcode: res.code,
           },
           header: { "Content-Type": "application/x-www-form-urlencoded" },
-          success: function(e){
+          success: function (e) {
             //获取openid
             console.log(e.data.openid);
             //储存oppenid
@@ -33,6 +34,9 @@ Page({
             })
             //刷新登录状态
             that.refreshLoginState();
+            that.setData({
+              hasUserInfo: true
+            })
           }
         })
       }
@@ -40,16 +44,55 @@ Page({
 
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
+  //拨打客服电话
+  makecall: function () {
+    wx.makePhoneCall({
+      phoneNumber: '18841167239',
+    })
+  },
+  //清除缓存
+  clearcache: function () {
+    var that = this;
+    that.setData({
+      huancun: 0,
+    });
+    // wx.showModal({
+    //   title: '高危操作',
+    //   content: '此操作将清除你本机记录的所有状态（不包括订单记录和收货地址），下次使用将需要重新授权！请确认是否继续操作！',
+    //   showCancel: true,
+    //   cancelText: '取消',
+    //   confirmText: '确认',
+    //   success: function (res) {
+    //     if(res.confirm){
+    //       wx.clearStorage();
+    //       that.setData({
+    //         huancun: 0,
+    //         hasUserInfo: false
+    //       });
+    //     }
+    //   },
+    //   fail: function (res) { },
+    //   complete: function (res) { },
+    // });
+  },
   onLoad: function () {
-    this.refreshLoginState();
+    var that = this;
+    that.refreshLoginState();
+    wx.getStorageInfo({
+      success: function (res) {
+        that.setData({
+          huancun: res.currentSize,
+        });
+      },
+    })
   },
   //获取登录状态
-  refreshLoginState: function(){
+  refreshLoginState: function () {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

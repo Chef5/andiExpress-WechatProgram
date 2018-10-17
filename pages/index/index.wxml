@@ -62,8 +62,8 @@
         </view>
       </view>
       <view class='weui-cells weui-cells_after-title'>
-        <button class='delete' bindtap='delList' data-id='{{listitem.id}}' size='mini'>
-        <image src='../../image/delete(1).png' class='images'></image>
+        <button class='btn1' bindtap='delList' data-id='{{listitem.id}}' size='mini'>
+        <image src='../../image/delete(1).png'  class='btnimg'></image>
           删除</button> 
       </view>
 
@@ -79,10 +79,10 @@
     <view class='list_one'>
       <view class='weui-cells wei-cells_after-title'>
         <view class='weui-cell '>
-          <button  size='mini' bindtap='addList'>
-            <image src='../../image/add contacts.png' class='images'></image>
-            添加订单</button> 
-
+          <button  size='mini' bindtap='addList' class='btn2'>
+            <image src='../../image/add contacts.png' class='images' class='btnimg'></image>
+            添加订单
+            </button>
         </view>
       </view>
     </view>
@@ -98,7 +98,7 @@
 
        <view class='weui-cells weui-cells_after-title jiesuan'>
         <view class='weui-cell'>
-          <image src='../../image/money-bag.png' class='images'></image>
+          <image src='../../image/money1.png' class='images'></image>
           结算
         </view>
         <view class='jisuan_money'>订单金额:<text>{{summoney}}元</text></view>
@@ -108,7 +108,9 @@
 
       <view class='flex-row' style='display:flex'>
         <!-- <button form-type='submit' size='mini' class='button' bindtap='ordersub'>提交订单并支付</button> -->
-        <button form-type='submit' size='mini' class='button' >提交订单并支付</button>
+        <button form-type='submit' size='mini' class='button'  class='btn4'>
+        <text>提交订单并支付</text>
+        </button>
       </view>
     </view>
 
