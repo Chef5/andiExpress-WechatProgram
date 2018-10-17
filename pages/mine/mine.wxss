@@ -2,7 +2,7 @@
 .page{
   background-color: rgba(245, 241, 241, 0.904);
 }
-navigator{
+navigator,view{
   font-size: 30rpx;
 }
 .hd{

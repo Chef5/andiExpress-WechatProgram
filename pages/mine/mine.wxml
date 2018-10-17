@@ -9,7 +9,7 @@
       <view class='head-name'>
         <open-data type="userNickName" wx:if="{{hasUserInfo}}"></open-data>
         <view wx:else><button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class='btn1'size='mini'>授权登录</button>
-<view wx:else>请升级微信版本</view></view>
+        <view wx:else>请升级微信版本</view></view>
       </view>
     </view>
   </view>
@@ -52,7 +52,5 @@
         <view class='weui-cell__ft weui-cell__ft_in-access'></view>
       </view>
     </view>
-    </view>
   </view>
-
 </view>
