@@ -1,16 +1,14 @@
 /* pages/location/location.wxss */
-.pages{
-  background: rgb(226, 224, 224);
-}
+
 .page_hd{
   font-size: 30rpx;
 }
 .images{
-  width: 25px;
-  height: 25px;
-  margin-top:5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  width: 50rpx;
+  height: 50rpx;
+  margin-top:10rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 .page_bd{
   display: flex;
@@ -23,12 +21,17 @@ button{
   border: none;
 }
 .address{
-  padding-top: 10px;
-  padding-left: 10px;
-  margin-top: 10px;
-  height: 70px;
-  background: rgb(228, 225, 218);
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+  height: 140rpx;
+   background: #fff; 
 }
 text{
   padding-left: 30rpx;
+}
+.myaddress{
+  margin-top: 10rpx;
+  margin-left: 60rpx;
 }

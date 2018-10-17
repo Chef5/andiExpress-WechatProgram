@@ -1,5 +1,7 @@
 /* pages/addlocation/addlocation.wxss */
 
 .page{
-  margin-top: 40px;
+  margin-top: 40rpx;
+  margin-left:30rpx;
+  margin-right: 30rpx; 
 }

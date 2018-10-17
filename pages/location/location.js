@@ -1,12 +1,13 @@
 // pages/location/location.js
+var app =getApp();
 Page({
-
+     
   /**
    * 页面的初始数据
    */
   data: {
     myaddress: [{
-      name: '丁昊', Tel:'173547282636',address:'大连工业大学 17舍 527'
+      name: '丁昊', Tel:'173547282636',address:'大连工业大学-17舍-527'
     }
     ],
     hideedit: true,
@@ -20,11 +21,21 @@ Page({
       url: '../addlocation/addlocation?id=1',
     })
   },
+  //选择地址
+  redioChange: function (e) {
+    console.log(e.detail.value)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+        console.log('onLoad')
+        var that =this;
+        app.getUserInfo(function(userInfo){
+          that.setData({
+            userInfo:userInfo
+          })
+        })
   },
   /**
    * 删除收货地址
