@@ -51,7 +51,7 @@ page{
 }
 .time{
    font-size: 25rpx;
-   margin-left: 130rpx;
+   margin-left: 50rpx;
    color: rgb(155, 151, 151); 
 }
 .weui-cell__bd{ 
@@ -93,4 +93,7 @@ image{
    margin-top: 6rpx;
   margin-left: 500rpx;
   margin-right: 30rpx;
+}
+.takeinfo{
+  margin-left: 40rpx;
 }
