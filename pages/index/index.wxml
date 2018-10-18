@@ -17,8 +17,11 @@
       <view class='weui-cell__hd'>
         <view>收货地址：</view>
       </view>
-      <view class='weui-cell__bd'>
-        <input class='weui-input' placeholder='点击添加收货地址哦~'  >{{address}}</input>
+      <view class='weui-cell__bd' wx:if='{{ishideinputsite}}' >
+        <input class='weui-input' placeholder='点击添加收货地址哦~' disabled='disabled' >{{address}}</input>
+      </view>
+      <view class='weui-cell__bd' wx:else>
+        <text class='showrinfo'>{{rname}}：{{defaultschool}}-{{rhouse}}-{{rdetail}}，{{rphone}}</text>
       </view>
     </view>
     

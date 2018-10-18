@@ -18,13 +18,14 @@ Page({
       { item: '较大件单独处理(8.8元)', money: 8.8 }, 
     ],
     lists: [{id:0, index1:0, index2:0, money:null}],
+    ishideinputsite: false,
     summoney: 0,     //总金额
     defaultsite: 1,  //用户的收货地址rid
     defaultschool: '大连工业大学',   //默认校区：大连工业大学
-    rname: 1,   //获取的收货人
-    rphone: 1,  //获取的收货手机号
-    rhouse: 1,  //获取的收货宿舍
-    rdetail:1,   //获取的收货宿舍详细
+    rname: '吴俊',   //获取的收货人
+    rphone: '15524807787',  //获取的收货手机号
+    rhouse: '28舍',  //获取的收货宿舍
+    rdetail:'555',   //获取的收货宿舍详细
   },
 
   //结算订单，获取信息
@@ -397,10 +398,10 @@ Page({
     wx.request({
       url: 'https://test.1zdz.cn/andi/api/orderadd.php',
       method: 'POST',
-      data: {
+      data: { 
         ouid: openid,
         rid: rsite,
-        price: money,
+        price: 0.01,
         prices: moneys,
         sites: locations,
         codes: codes,
@@ -409,10 +410,15 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       success: function (res) {
         console.log(res.data);
+        var oids = res.data.oids; //获取单号
         if (res.data.code == '100') {
           wx.showToast({
             title: '下单成功',
           });
+          that.setData({
+            lists: [],
+            summoney : 0
+          })
           var timestamp = String(res.data.data.prepay.timeStamp);
           wx.requestPayment({
             'timeStamp': timestamp,
@@ -421,8 +427,7 @@ Page({
             'signType': res.data.data.prepay.signType,
             'paySign': res.data.data.prepay.paySign,
             'success': function (res) {
-              console.log("支付成功！");
-              console.log(res);
+              that.paysuccess(oids);
             },
             'fail': function (res) {
               console.log("支付失败！");
@@ -432,6 +437,32 @@ Page({
               
             }
           })
+        } else {
+          wx.showToast({
+            title: '网络错误',
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 支付成功
+   */
+  paysuccess: function(oids){
+    var that = this;
+    wx.request({
+      url: 'https://test.1zdz.cn/andi/api/paysuccess.php',
+      method: 'POST',
+      data: {
+        oids: oids,
+      },
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == '100') {
+          wx.showToast({
+            title: '结算成功',
+          });
         } else {
           wx.showToast({
             title: '网络错误',

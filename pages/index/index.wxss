@@ -114,7 +114,12 @@ view{
   display: inline-block;
   margin-left: 10rpx;
 }
-
+.showrinfo{
+  text-align: center;
+  font-size: 26rpx;
+  color: gray;
+  margin-left: 50rpx;
+}
 
 
 
