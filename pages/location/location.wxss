@@ -20,13 +20,29 @@
 button{
   border: none;
 }
+.site-cell{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px rebeccapurple dashed;
+}
 .address{
+  display: flex;
   padding-top: 20rpx;
   padding-left: 20rpx;
   margin-top: 10rpx;
   margin-bottom: 20rpx;
-  height: 140rpx;
-   background: #fff; 
+  height: 120rpx;
+  background: #fff; 
+}
+.dosome{
+  display: flex;
+  position: absolute;
+  right: 10rpx;
+  margin-top: 40rpx;
+}
+.dosome image{
+  width: 80rpx;
+  height: 80rpx;
 }
 text{
   padding-left: 30rpx;
@@ -34,4 +50,26 @@ text{
 .myaddress{
   margin-top: 10rpx;
   margin-left: 60rpx;
+}
+
+.cell-hang{
+  display:flex;
+  flex-direction:row;
+  height: 75rpx;
+}
+.cell-hang input{
+  border: 1px solid gainsboro;
+}
+.cell-hang view{
+  display: flex;
+}
+.cell-label{
+  flex: 2;
+}
+.cell-picker{
+  flex: 8;
+}
+.comfirm-submit{
+  margin-top: 50rpx;
+  width: 50%;
 }

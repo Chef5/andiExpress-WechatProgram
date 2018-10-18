@@ -6,36 +6,129 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myaddress: [{
-      name: '丁昊', Tel:'173547282636',address:'大连工业大学-17舍-527'
-    }
+    site: [
+      { rid: 1 , name: '丁昊', phone:'173547282636', school:'大连工业大学', house:'17舍', detail:'527', check:''}
     ],
     hideedit: true,
     hideadd: true,
+    indexhouse: 0,
+    indexschool: 0,
+    house: ['1舍', '2舍', '3舍', '4舍', '5舍', '6舍'],
+    school: ['大连工业大学'],
+    // editrid: 0,
+    // editname: '',
+    // editphone: '',
+    // editschool: '',
+    // edithouse: '',
+    // editdetail: '',
   },
-  //添加地址
-  addClick: function (event) {
-    console.log(event);
-    var p = event.currentTarget.id;
-    wx.navigateTo({
-      url: '../addlocation/addlocation?id=1',
+
+  //选择校区
+  bindPickerSchool: function(e){
+    var that = this;
+    that.setData({
+      indexschool: e.detail.value,
+    });
+  },
+  //选择楼栋
+  bindPickerHouse: function (e) {
+    var that = this;
+    that.setData({
+      indexhouse: e.detail.value,
+    });
+  },
+
+  //开始添加地址
+  addClick: function (e) {
+    var that = this;
+    that.setData({
+      hideadd: false,
     })
   },
+  //添加地址确认
+  addconfirm: function (e) {
+    console.log(e);
+    var that = this;
+    var openid = wx.getStorageSync('openid'); //当前用户openid
+    var mname = e.detail.value.name; //获取姓名
+    var mphone = e.detail.value.phone; //获取手机号
+    var mdetail = e.detail.value.detail; //获取宿舍
+    var mschool = that.data.school[that.data.indexschool]; //获取校区
+    var mhouse = that.data.house[that.data.indexhouse]; //获取校区
+    wx.request({
+      url: 'https://test.1zdz.cn/andi/api/rsiteadd.php',
+      method: 'POST',
+      data: {
+        openid: openid,
+        name: mname,
+        phone: mphone,
+        detail: mdetail,
+        school: mschool,
+        house: mhouse
+      },
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      success: function (res) {
+        if (res.data.code == '100') {
+          wx.showToast({
+            title: '添加成功',
+          });
+          that.refreshList();
+          that.setData({
+            hideadd: true
+          });
+        } else if (res.data.code == '120') {
+          wx.showToast({
+            title: '添加失败',
+          })
+        } else {
+          wx.showToast({
+            title: '网络错误',
+          })
+        }
+      },
+      fail: function (res) { },
+      complete: function (res) { }
+    })
+  },
+  //添加地址完成
+  addcomplete: function(){
+    var that = this;
+    that.setData({
+      hideadd: true
+    });
+    that.refreshList();
+  },
+
+
   //选择地址
-  redioChange: function (e) {
-    console.log(e.detail.value)
+  radioChange: function (e) {
+    console.log(e.detail.value);
+    wx.setStorage({
+      key: 'rid',
+      data: e.detail.value,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-        console.log('onLoad')
-        var that =this;
-        app.getUserInfo(function(userInfo){
-          that.setData({
-            userInfo:userInfo
-          })
-        })
+    var that =this;
+    that.refreshList();
+    var site = that.data.site;
+    var hasrid = wx.getStorageInfoSync('rid');
+    if(hasrid==null || hasrid==''){
+      for (var i = 0; i < site.length; i++) site[i].check = false;
+      site[0].check=true;
+    }
+    else{
+      for(var i=0; i<site.length; i++){
+        if (site[i].rid == hasrid)site[i].check = true;
+        else site[i].check = false;
+      }
+    }
+    that.setData({
+      site: site,
+    });
   },
   /**
    * 删除收货地址
@@ -52,13 +145,13 @@ Page({
           //当前用户openid
           var openid = wx.getStorageSync('openid');
           //修改数据
-          var mid = e.currentTarget.dataset.id;
+          var rid = e.currentTarget.dataset.rid;
           wx.request({
-            url: 'https://test.1zdz.cn/andi/api/',
+            url: 'https://test.1zdz.cn/andi/api/rsitedel.php',
             method: 'POST',
             data: {
-              admin: admin,
-              mid: mid,
+              openid: openid,
+              rid: rid,
             },
             header: { "Content-Type": "application/x-www-form-urlencoded" },
             success: function (res) {
@@ -93,9 +186,20 @@ Page({
    */
   editsite: function (e) {
     var that = this;
+    var editschool = 0;
+    var edithouse = 0;
+    var school = that.data.school;
+    var house = that.data.house;
+    for (var i = 0; i < school.length; i++) if (school[i] == e.currentTarget.dataset.school){ editschool = i; break;}
+    for (var i = 0; i < house.length; i++) if (house[i] == e.currentTarget.dataset.house) {edithouse = i; break;}
     //获取当前收货地址信息
     that.setData({
-      editid: e.currentTarget.dataset.id,
+      editrid: e.currentTarget.dataset.rid,
+      editname: e.currentTarget.dataset.name,
+      editphone: e.currentTarget.dataset.phone,
+      editschool: editschool,
+      edithouse: edithouse,
+      editdetail: e.currentTarget.dataset.detail,
       hideedit: false,
     });
   },
@@ -140,54 +244,7 @@ Page({
     });
     that.refreshList();
   },
-  /**
-   * 添加收货地址
-   */
-  addsite: function () {
-    var that = this;
-    that.setData({
-      hideadd: false,
-    });
-  },
-  addconfirm: function (e) {
-    console.log(e);
-    //当前用户openid
-    var openid = wx.getStorageSync('openid');
-    //添加数据
-    var mname = e.detail.value.name;
-    wx.request({
-      url: 'https://test.1zdz.cn/andi/api/',
-      method: 'POST',
-      data: {
-        admin: admin,
-      },
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
-      success: function (res) {
-        if (res.data.code == '100') {
-          wx.showToast({
-            title: '添加成功',
-          })
-        } else if (res.data.code == '120') {
-          wx.showToast({
-            title: '添加失败',
-          })
-        } else {
-          wx.showToast({
-            title: '网络错误',
-          })
-        }
-      },
-      fail: function (res) { },
-      complete: function (res) { }
-    })
-  },
-  addcomplete: function (e) {
-    var that = this;
-    that.setData({
-      hideadd: true,
-    });
-    that.refreshList();
-  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -236,11 +293,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //获取用户的收货地址
   refreshList: function () {
     var that = this;
     var openid = wx.getStorageSync('openid');
     wx.request({
-      url: 'https://test.1zdz.cn/andi/api/',
+      url: 'https://test.1zdz.cn/andi/api/rsitelist.php',
       method: 'POST',
       data: {
         openid: openid,
@@ -248,13 +306,18 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       success: function (res) {
         console.log(res);
-        var person = new Array;
-        console.log(person);
+        var site = new Array;
         for (var i = 0; i < res.data.data.length; i++) {
-          person[i] = new Object;
-          person[i].id = res.data.data[i].mid;
+          site[i] = new Object;
+          site[i].rid = res.data.data[i].rid;
+          site[i].name = res.data.data[i].rname;
+          site[i].phone = res.data.data[i].rphone;
+          site[i].school = res.data.data[i].rschool;
+          site[i].house = res.data.data[i].rhouse;
+          site[i].detail = res.data.data[i].rdetail;
+          site[i].check = '';
         }
-        that.setData({ person: person, });
+        that.setData({ site: site, });
       },
       fail: function (res) { },
       complete: function (res) { }

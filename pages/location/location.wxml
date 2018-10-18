@@ -2,19 +2,27 @@
 <view class='pages'>
   <view class='page_hd'>
     <radio-group bindchange="radioChange"> 
-      <view class='address' wx:for="{{myaddress}}" wx:key="{{item}}"> 
-         <radio value='address' class='radio' />
-         <text class='name'>{{item.name}}</text>
-         <text class='Tel'>{{item.Tel}}</text>
-         <view class='myaddress'>{{item.address}}</view>
-         
-      </view>
-      <view class='address' wx:for="{{myaddress}}" wx:key="{{item}}"> 
-        <radio value='address' class='radio' />
-         <text class='name'>{{item.name}}</text>
-         <text class='Tel'>{{item.Tel}}</text>
-         <view class='myaddress'>{{item.address}}</view>
-         
+      <view wx:for="{{site}}" wx:key="{{item}}">
+
+        <view  class='site-cell'>
+          <view class='address'> 
+            <view><radio value='{{item.rid}}' checked='{{item.check}}' class='radio' />
+            <text class='name'>{{item.name}}</text>
+            <text class='Tel'>{{item.phome}}</text>
+            <view class='myaddress'>{{item.school}}-{{item.house}}-{{item.detail}}</view>
+            </view>
+          </view>
+          
+          <view class='dosome'>
+            <view bindtap='deletesite' data-rid='{{item.rid}}'>
+              <image src='../../image/delete(1).png'></image>
+            </view>
+            <view bindtap='editsite' data-rid='{{item.rid}}' data-name='{{item.name}}' data-phone='{{item.phone}}' data-school='{{item.school}}' data-house='{{item.house}}' data-detail='{{item.detail}}'>
+              <image src='../../image/about.png'></image>
+            </view>
+          </view>
+        </view>
+
       </view>
     </radio-group>
      
@@ -26,20 +34,38 @@
   </view>
   <modal hidden="{{hideedit}}" title="收货地址修改" confirm-text="完成" bindconfirm="editcomplete" no-cancel='true'>
     <form bindsubmit="editconfirm" >
-      <input type="hidden" hidden='true' name="id" value="{{editid}}" ></input>
-      <view><label>姓名：</label><input name='name' value='{{editname}}' maxlength='4'></input></view>
-      <view><label>手机：</label><input name='phone' value='{{editphone}}' maxlength='11'></input></view>
-      <view><label>密码：</label><input name='passwd' value='{{editpasswd}}'></input></view>
+      <view class='cell-hang'><view class='cell-label'>姓名：</view><view class='cell-picker'><input name='name' maxlength='4' value='{{editname}}'></input></view></view>
+      <view class='cell-hang'><view class='cell-label'>手机：</view><view class='cell-picker'><input name='phone' maxlength='11' value='{{editphone}}'></input></view></view>
+      <view class='cell-hang'><view class='cell-label'>校区：</view>
+          <view class='cell-picker'><picker bindchange="bindPickerSchool" value="{{editschool}}" range="{{school}}">
+            {{school[editschool]}}
+          </picker></view>
+      </view>
+      <view  class='cell-hang'><view class='cell-label'>楼栋：</view>
+          <view class='cell-picker'><picker bindchange="bindPickerHouse" value="{{edithouse}}" range="{{house}}"  class="weui-cell__ft">
+            {{house[edithouse]}}
+          </picker></view>
+      </view>
+      <view class='cell-hang'><view class='cell-label'>宿舍：</view><view class='cell-picker'><input name='detail' value='{{editdetail}}'></input></view></view>
+      
       <button form-type='submit' type='primary' class='comfirm-submit' >确认修改</button>
     </form>
   </modal>
-  <modal hidden="{{hideadd}}" title="新增收货地址" confirm-text="完成" bindconfirm="addcomplete" no-cancel='true'>
+  <modal hidden="{{hideadd}}" title="新增收货地址" confirm-text="关闭" bindconfirm="addcomplete" no-cancel='true'>
     <form bindsubmit="addconfirm" >
-      <view><label>姓名：</label><input name='name' maxlength='4'></input></view>
-      <view><label>手机：</label><input name='phone' maxlength='11'></input></view>
-      <view><label>校区：</label> </view>
-      <view><label>楼栋：</label> </view>
-      <view><label>宿舍：</label> </view>
+      <view class='cell-hang'><view class='cell-label'>姓名：</view><view class='cell-picker'><input name='name' maxlength='4' placeholder='点此输入姓名'></input></view></view>
+      <view class='cell-hang'><view class='cell-label'>手机：</view><view class='cell-picker'><input name='phone' maxlength='11' placeholder='点此输入手机号'></input></view></view>
+      <view class='cell-hang'><view class='cell-label'>校区：</view>
+          <view class='cell-picker'><picker bindchange="bindPickerSchool" value="{{indexschool}}" range="{{school}}">
+            {{school[indexschool]}}
+          </picker></view>
+      </view>
+      <view  class='cell-hang'><view class='cell-label'>楼栋：</view>
+          <view class='cell-picker'><picker bindchange="bindPickerHouse" value="{{indexhouse}}" range="{{house}}"  class="weui-cell__ft">
+            {{house[indexhouse]}}
+          </picker></view>
+      </view>
+      <view class='cell-hang'><view class='cell-label'>宿舍：</view><view class='cell-picker'><input name='detail' placeholder='点此输入宿舍详细内容'></input></view></view>
       <button form-type='submit' type='primary' class='comfirm-submit' >添加</button>
     </form>
   </modal>
