@@ -26,6 +26,20 @@ Page({
       currentTab: e.currentTarget.dataset.idx
     })
   } ,
+  //复制单号
+  copyoid: function(e){
+    var that = this;
+    var content = '订单号：' + e.currentTarget.dataset.oid ;
+    wx.setClipboardData({
+      data: content,
+      success: function (res) {
+        wx.showToast({
+          title: '单号复制成功！',
+          duration: 1000
+        });
+      }
+    })
+  },
   //支付订单
   payorder: function (e) {
     console.log(e);

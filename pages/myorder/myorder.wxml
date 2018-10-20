@@ -15,7 +15,7 @@
 
           <view class='order border'>
             <view class='weui-cells weui-cells_after-title'></view>
-            <view class='weui-cell__hd_orderNo'>
+            <view class='weui-cell__hd_orderNo' bindtap='copyoid' data-oid='{{order1.oid}}'>
               订单号:{{order1.oid}}
               <text class='time'>{{order1.time}}</text>
             </view>
@@ -45,7 +45,7 @@
 
             <view class='order border'>
               <view class='weui-cells weui-cells_after-title'></view>
-              <view class='weui-cell__hd_orderNo'>
+              <view class='weui-cell__hd_orderNo' bindtap='copyoid' data-oid='{{order2.oid}}'>
                 订单号:{{order2.oid}}
                 <text class='time'>{{order2.time}}</text>
               </view>
@@ -74,7 +74,7 @@
 
             <view class='order border'>
               <view class='weui-cells weui-cells_after-title'></view>
-              <view class='weui-cell__hd_orderNo'>
+              <view class='weui-cell__hd_orderNo' bindtap='copyoid' data-oid='{{order3.oid}}'>
                 订单号:{{order3.oid}}
                 <text class='time'>{{order3.time}}</text>
               </view>
