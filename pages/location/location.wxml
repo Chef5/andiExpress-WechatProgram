@@ -18,7 +18,7 @@
               <image src='../../image/delete(1).png'></image>
             </view>
             <view bindtap='editsite' data-rid='{{item.rid}}' data-name='{{item.name}}' data-phone='{{item.phone}}' data-school='{{item.school}}' data-house='{{item.house}}' data-detail='{{item.detail}}'>
-              <image src='../../image/about.png'></image>
+              <image src='../../image/edit2.png'></image>
             </view>
           </view>
         </view>
@@ -37,12 +37,12 @@
       <view class='cell-hang'><view class='cell-label'>姓名：</view><view class='cell-picker'><input name='name' maxlength='4' value='{{editname}}'></input></view></view>
       <view class='cell-hang'><view class='cell-label'>手机：</view><view class='cell-picker'><input name='phone' maxlength='11' value='{{editphone}}'></input></view></view>
       <view class='cell-hang'><view class='cell-label'>校区：</view>
-          <view class='cell-picker'><picker bindchange="bindPickerSchool" value="{{editschool}}" range="{{school}}">
+          <view class='cell-picker'><picker bindchange="bindPickerSchoolEdit" value="{{editschool}}" range="{{school}}">
             {{school[editschool]}}
           </picker></view>
       </view>
       <view  class='cell-hang'><view class='cell-label'>楼栋：</view>
-          <view class='cell-picker'><picker bindchange="bindPickerHouse" value="{{edithouse}}" range="{{house}}"  class="weui-cell__ft">
+          <view class='cell-picker'><picker bindchange="bindPickerHouseEdit" value="{{edithouse}}" range="{{house}}"  class="weui-cell__ft">
             {{house[edithouse]}}
           </picker></view>
       </view>

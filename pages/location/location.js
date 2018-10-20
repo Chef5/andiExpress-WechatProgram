@@ -7,7 +7,7 @@ Page({
    */
   data: {
     site: [
-      { rid: 1 , name: '丁昊', phone:'173547282636', school:'大连工业大学', house:'17舍', detail:'527', check:''}
+      { rid: 1 , name: '丁昊', phone:'173547282636', school:'大连工业大学', house:'17舍', detail:'527', check:true}
     ],
     hideedit: true,
     hideadd: true,
@@ -18,9 +18,9 @@ Page({
     // editrid: 0,
     // editname: '',
     // editphone: '',
-    // editschool: '',
-    // edithouse: '',
-    // editdetail: '',
+    editschool: 0,
+    edithouse: 0,
+    //editdetail: 0,
   },
 
   //选择校区
@@ -35,6 +35,20 @@ Page({
     var that = this;
     that.setData({
       indexhouse: e.detail.value,
+    });
+  },
+  //选择编辑校区
+  bindPickerSchoolEdit: function(e){
+    var that = this;
+    that.setData({
+      editschool: e.detail.value,
+    });
+  },
+  //选择编辑楼栋
+  bindPickerHouseEdit: function (e) {
+    var that = this;
+    that.setData({
+      edithouse: e.detail.value,
     });
   },
 
@@ -115,10 +129,14 @@ Page({
     var that =this;
     that.refreshList();
     var site = that.data.site;
-    var hasrid = wx.getStorageInfoSync('rid');
+    var hasrid = wx.getStorageSync('rid');
     if(hasrid==null || hasrid==''){
       for (var i = 0; i < site.length; i++) site[i].check = false;
       site[0].check=true;
+      wx.setStorage({
+        key: 'rid',
+        data: site[0].rid,
+      })
     }
     else{
       for(var i=0; i<site.length; i++){
@@ -204,17 +222,27 @@ Page({
     });
   },
   editconfirm: function (e) {
-    console.log(e);
+    var that = this;
     //当前用户openid
-    var admin = wx.getStorageSync('openid');
+    var openid = wx.getStorageSync('openid');
     //修改数据
-    var mid = e.detail.value.id;
+    var rid = that.data.editrid;
+    var name = e.detail.value.name;
+    var phone = e.detail.value.phone;
+    var school = that.data.school[that.data.editschool];
+    var house = that.data.house[that.data.edithouse];
+    var detail = e.detail.value.detail;
     wx.request({
-      url: 'https://test.1zdz.cn/andi/api/',
+      url: 'https://test.1zdz.cn/andi/api/rsiteedit.php',
       method: 'POST',
       data: {
-        admin: admin,
-        mid: mid,
+        rid: rid,
+        uid: openid,
+        name: name,
+        phone: phone,
+        school: school,
+        house: house,
+        detail: detail
       },
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       success: function (res) {
@@ -234,7 +262,12 @@ Page({
         }
       },
       fail: function (res) { },
-      complete: function (res) { }
+      complete: function (res) { 
+        that.setData({
+          hideedit: true,
+        });
+        that.refreshList();
+      }
     })
   },
   editcomplete: function (e) {
@@ -249,7 +282,26 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this;
+    var site = that.data.site;
+    var hasrid = wx.getStorageSync('rid');
+    if (hasrid == null || hasrid == '') {
+      for (var i = 0; i < site.length; i++) site[i].check = false;
+      site[0].check = true;
+      wx.setStorage({
+        key: 'rid',
+        data: site[0].rid,
+      })
+    }
+    else {
+      for (var i = 0; i < site.length; i++) {
+        if (site[i].rid == hasrid) site[i].check = true;
+        else site[i].check = false;
+      }
+    }
+    that.setData({
+      site: site,
+    });
   },
 
   /**
@@ -295,7 +347,8 @@ Page({
   },
   //获取用户的收货地址
   refreshList: function () {
-    var that = this;
+    var that = this; 
+    var hasrid = wx.getStorageSync('rid');
     var openid = wx.getStorageSync('openid');
     wx.request({
       url: 'https://test.1zdz.cn/andi/api/rsitelist.php',
@@ -315,7 +368,61 @@ Page({
           site[i].school = res.data.data[i].rschool;
           site[i].house = res.data.data[i].rhouse;
           site[i].detail = res.data.data[i].rdetail;
-          site[i].check = '';
+          if (hasrid == null || hasrid == ''){
+            site[0].check = true;
+            wx.setStorage({
+              key: 'rid',
+              data: res.data.data[0].rid,
+            });
+            wx.setStorage({
+              key: 'rschool',
+              data: res.data.data[0].rschool,
+            });
+            wx.setStorage({
+              key: 'rname',
+              data: res.data.data[0].rname,
+            });
+            wx.setStorage({
+              key: 'rphone',
+              data: res.data.data[0].rphone,
+            });
+            wx.setStorage({
+              key: 'rhouse',
+              data: res.data.data[0].rhouse,
+            });
+            wx.setStorage({
+              key: 'rdetail',
+              data: res.data.data[0].rdetail,
+            });
+          }
+          else if (hasrid == res.data.data[i].rid){
+            site[i].check = true;
+            wx.setStorage({
+              key: 'rid',
+              data: res.data.data[i].rid,
+            });
+            wx.setStorage({
+              key: 'rschool',
+              data: res.data.data[i].rschool,
+            });
+            wx.setStorage({
+              key: 'rname',
+              data: res.data.data[i].rname,
+            });
+            wx.setStorage({
+              key: 'rphone',
+              data: res.data.data[i].rphone,
+            });
+            wx.setStorage({
+              key: 'rhouse',
+              data: res.data.data[i].rhouse,
+            });
+            wx.setStorage({
+              key: 'rdetail',
+              data: res.data.data[i].rdetail,
+            });
+          }
+          else site[i].check = false;
         }
         that.setData({ site: site, });
       },

@@ -18,14 +18,14 @@ Page({
       { item: '较大件单独处理(8.8元)', money: 8.8 }, 
     ],
     lists: [{id:0, index1:0, index2:0, money:null}],
-    ishideinputsite: false,
+    ishideinputsite: true,
     summoney: 0,     //总金额
-    defaultsite: 1,  //用户的收货地址rid
-    defaultschool: '大连工业大学',   //默认校区：大连工业大学
-    rname: '吴俊',   //获取的收货人
-    rphone: '15524807787',  //获取的收货手机号
-    rhouse: '28舍',  //获取的收货宿舍
-    rdetail:'555',   //获取的收货宿舍详细
+    defaultsite: null,  //用户的收货地址rid
+    defaultschool: null,   //默认校区：大连工业大学
+    rname: null,   //获取的收货人
+    rphone: null,  //获取的收货手机号
+    rhouse: null,  //获取的收货宿舍
+    rdetail: null,   //获取的收货宿舍详细
   },
 
   //结算订单，获取信息
@@ -213,6 +213,21 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var rid = wx.getStorageSync('rid');
+    var rschool = wx.getStorageSync('rschool');
+    var rname = wx.getStorageSync('rname');
+    var rphone = wx.getStorageSync('rphone');
+    var rhouse = wx.getStorageSync('rhouse');
+    var rdetail = wx.getStorageSync('rdetail');
+    that.setData({
+      defaultsite: rid,
+      defaultschool: rschool,
+      rname: rname,
+      rphone: rphone,
+      rhouse: rhouse,
+      rdetail: rdetail,
+    });
+    //that.getdefaultsite(rid);
     that.checkSomeValue();
   },
 
@@ -220,7 +235,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this;
+    var rid = wx.getStorageSync('rid');
+    var rschool = wx.getStorageSync('rschool');
+    var rname = wx.getStorageSync('rname');
+    var rphone = wx.getStorageSync('rphone');
+    var rhouse = wx.getStorageSync('rhouse');
+    var rdetail = wx.getStorageSync('rdetail');
+    that.setData({
+      defaultsite: rid,
+      defaultschool: rschool,
+      rname: rname,
+      rphone: rphone,
+      rhouse: rhouse,
+      rdetail: rdetail,
+    });
   },
 
   /**
@@ -229,6 +258,22 @@ Page({
   onShow: function () {
     //console.log(app.globalData.userInfo);
     var that = this;
+    var rid = wx.getStorageSync('rid');
+    var rschool = wx.getStorageSync('rschool');
+    var rname = wx.getStorageSync('rname');
+    var rphone = wx.getStorageSync('rphone');
+    var rhouse = wx.getStorageSync('rhouse');
+    var rdetail = wx.getStorageSync('rdetail');
+    that.setData({
+      defaultsite: rid,
+      defaultschool: rschool,
+      rname: rname,
+      rphone: rphone,
+      rhouse: rhouse,
+      rdetail: rdetail,
+    });
+    console.log("onshowrid:"+rid);
+    that.getdefaultsite(rid);
     that.checkSomeValue();
   },
 
@@ -278,11 +323,11 @@ Page({
     var that = this;
     //检查授权
     var hasopenid = wx.getStorageSync('openid');
-    console.log("checkopenid:"+hasopenid);
+    console.log("checkopenid:" + hasopenid);
     if(hasopenid == null || hasopenid == ""){
       wx.showModal({
         title: '授权提示',
-        content: '首次使用安递物流需要授权哦，我们才能准确为您服务，请点击“我的”，再点击上方授权按钮进行授权，授权之后便可以下单取快递啦！',
+        content: '首次使用安递物流需要授权哦，我们才能准确为您服务，请前往“个人”，再点击上方授权按钮进行授权，授权之后便可以下单取快递啦！',
         showCancel: false,
         confirmText: '知道啦',
         success: function(res) {},
@@ -292,28 +337,41 @@ Page({
       return false;
     }
     //检查收货地址
-    else if (that.data.defaultsite == null){
-      wx.showModal({
-        title: '设置收货地址',
-        content: '您还没有任何收货地址哦，先设置一下收货地址吧！',
-        showCancel: true,
-        cancelText: '取消',
-        confirmText: '设置',
-        success: function (res) { 
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../location/location',
-            })
-          } else {
-            console.log('用户取消设置收货地址')
-          }
-        },
-        fail: function (res) { },
-        complete: function (res) { },
+    // else if (that.data.defaultsite == null || that.data.defaultsite == '' ||
+    //   that.data.defaultschool == null || that.data.defaultschool == '' ||
+    //   that.data.rname == null || that.data.rname == '' ||
+    //   that.data.rphone == null || that.data.rphone == '' ||
+    //   that.data.rhouse == null || that.data.rhouse == '' ||
+    //   that.data.rdetail == null || that.data.rdetail == '' ){
+    //   that.setData({
+    //     ishideinputsite: true
+    //   });
+    //   wx.showModal({
+    //     title: '设置收货地址',
+    //     content: '您还没有任何收货地址哦，先设置一下收货地址吧！',
+    //     showCancel: true,
+    //     cancelText: '取消',
+    //     confirmText: '设置',
+    //     success: function (res) { 
+    //       if (res.confirm) {
+    //         wx.navigateTo({
+    //           url: '../location/location',
+    //         })
+    //       } else {
+    //         console.log('用户取消设置收货地址')
+    //       }
+    //     },
+    //     fail: function (res) { },
+    //     complete: function (res) { },
+    //   });
+    //   return false;
+    // }
+    else {
+      that.setData({
+        ishideinputsite: false,
       });
-      return false;
-    }
-    else return true;
+      return true;
+      }
   },
   /**
    * 下单前检查订单信息是否合法
@@ -321,10 +379,13 @@ Page({
   checkOrderInfo: function(school,id,location,weight,code,other){
     var that = this;
     //检查收货地址有没有初始化失败
-    if(that.data.rname == null && that.data.rphone == null && that.data.rhouse == null && that.data.rdetail == null){
+    if (that.data.rname == null || that.data.rname == '' || 
+      that.data.rphone == null || that.data.rphone == '' || 
+      that.data.rhouse == null || that.data.rhouse == '' || 
+      that.data.rdetail == null || that.data.rdetail == ''){
       wx.showModal({
         title: '收货地址出错',
-        content: '收货地址初始化失败!',
+        content: '收货地址未选择或设置!',
         showCancel: false,
         confirmText: '确认',
         success: function (res) { },
@@ -470,5 +531,45 @@ Page({
         }
       }
     })
+  },
+  /**
+   * 获取当前选择收货地址
+   */
+  getdefaultsite: function (rid) {
+    var that = this;
+    var openid = wx.getStorageSync('openid');
+    console.log("request rid:"+rid);
+    if(rid == null || rid == '')return false;
+    else{
+      wx.request({
+      url: 'https://test.1zdz.cn/andi/api/getdefaultsite.php',
+      method: 'POST',
+      data: {
+        rid: rid,
+        openid: openid,
+      },
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == '100') {
+          that.setData({
+            defaultschool: res.data.data.rschool,   //用于显示
+            rname: res.data.data.rname,   
+            rphone: res.data.data.rphone,  
+            rhouse: res.data.data.rhouse,  
+            rdetail: res.data.data.rdetail,  
+            ishideinputsite: false,
+          });
+        } else {
+          wx.showToast({
+            title: '网络错误',
+          });
+          that.setData({
+            ishideinputsite: true,
+          })
+        }
+      }
+      })
+    }
   }
 })
