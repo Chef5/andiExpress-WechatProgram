@@ -31,16 +31,16 @@
 
         <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-          <view class="weui-cell__bd">快递点：</view>
+          <view class="weui-cell__bd weui-cell__f1">快递点：</view>
           <picker bindchange="bindPickerChange1" data-id='{{listitem.id}}' value="{{listitem.index1}}" range="{{location}}"  class="weui-cell__ft">
-            <view class='weui-input'>{{location[listitem.index1]}}</view>
+            <view class='weui-input weui-cell__f2'>{{location[listitem.index1]}}</view>
           </picker>
         </view>
 
         <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-          <view class="weui-cell__bd">重量：</view>
+          <view class="weui-cell__bd weui-cell__f1">重量：</view>
           <picker bindchange='bindPickerChange2' data-id='{{listitem.id}}' value='{{listitem.index2}}' range='{{weight}}' range-key="item" class="weui-cell__ft ">
-            <view class='weui-input'>{{weight[listitem.index2].item}}</view>
+            <view class='weui-input weui-cell__f2'>{{weight[listitem.index2].item}}</view>
           </picker>
         </view>
       </view>
@@ -83,7 +83,7 @@
       <view class='weui-cells wei-cells_after-title'>
         <view class='weui-cell '>
           <button  size='mini' bindtap='addList' class='btn2'>
-            <image src='../../image/add contacts.png' class='images' class='btnimg'></image>
+            <image src='../../image/addorder.png' class='images' class='btnimg'></image>
             添加订单
             </button>
         </view>

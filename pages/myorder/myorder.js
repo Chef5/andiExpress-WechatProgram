@@ -5,19 +5,13 @@ Page({
     currentTab: 0,
     navbar: ['待付款', '未配送', '已完成'],
     myorder1:[
-      { oid: '123456789098765432111', name: '丁昊', message: '中通快递-3111', time: '2018.9.10 13:03', money: 11 },
-      { oid: '123456789098765432122', name: '丁昊', message: '中通快递-2222', time: '2018.9.10 13:03', money: 22 },
-      { oid: '123456789098765432133', name: '丁昊', message: '中通快递-3333', time: '2018.9.10 13:03', money: 33 }
+      { oid: '', name: '', message: '', time: '', money: 11 },
     ],
     myorder2: [
-      { oid: '123456789098765432111', name: '丁昊', message: '中通快递-3111', time: '2018.9.10 13:03', money: 11 },
-      { oid: '123456789098765432122', name: '丁昊', message: '中通快递-2222', time: '2018.9.10 13:03', money: 22 },
-      { oid: '123456789098765432133', name: '丁昊', message: '中通快递-3333', time: '2018.9.10 13:03', money: 33 }
+      { oid: '', name: '', message: '', time: '', money: 11 },
     ],
     myorder3: [
-      { oid: '123456789098765432111', name: '丁昊', message: '中通快递-3111', time: '2018.9.10 13:03', money: 11 },
-      { oid: '123456789098765432122', name: '丁昊', message: '中通快递-2222', time: '2018.9.10 13:03', money: 22 },
-      { oid: '123456789098765432133', name: '丁昊', message: '中通快递-3333', time: '2018.9.10 13:03', money: 33 }
+      { oid: '', name: '', message: '', time: '', money: 11 },
     ],
   },
   //tab
@@ -97,7 +91,7 @@ Page({
     var oid = e.currentTarget.dataset.oid;
     var openid = wx.getStorageSync('openid');//获取用户openid
     wx.request({
-      url: 'https://test.1zdz.cn/andi/api/orderdel.php',
+      url: 'https://test.1zdz.cn/andi/api/ordercancle.php',
       method: 'post',
       data: {
         openid: openid,

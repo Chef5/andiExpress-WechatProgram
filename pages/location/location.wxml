@@ -34,7 +34,7 @@
   </view>
   <modal hidden="{{hideedit}}" title="收货地址修改" confirm-text="完成" bindconfirm="editcomplete" no-cancel='true'>
     <form bindsubmit="editconfirm" >
-      <view class='cell-hang'><view class='cell-label'>姓名：</view><view class='cell-picker'><input name='name' maxlength='4' value='{{editname}}'></input></view></view>
+      <view class='cell-hang'><view class='cell-label'>姓名：</view><view class='cell-picker'><input name='name' maxlength='8' value='{{editname}}'></input></view></view>
       <view class='cell-hang'><view class='cell-label'>手机：</view><view class='cell-picker'><input name='phone' maxlength='11' value='{{editphone}}'></input></view></view>
       <view class='cell-hang'><view class='cell-label'>校区：</view>
           <view class='cell-picker'><picker bindchange="bindPickerSchoolEdit" value="{{editschool}}" range="{{school}}">
@@ -53,7 +53,7 @@
   </modal>
   <modal hidden="{{hideadd}}" title="新增收货地址" confirm-text="关闭" bindconfirm="addcomplete" no-cancel='true'>
     <form bindsubmit="addconfirm" >
-      <view class='cell-hang'><view class='cell-label'>姓名：</view><view class='cell-picker'><input name='name' maxlength='4' placeholder='点此输入姓名'></input></view></view>
+      <view class='cell-hang'><view class='cell-label'>姓名：</view><view class='cell-picker'><input name='name' maxlength='8' placeholder='点此输入姓名'></input></view></view>
       <view class='cell-hang'><view class='cell-label'>手机：</view><view class='cell-picker'><input name='phone' maxlength='11' placeholder='点此输入手机号'></input></view></view>
       <view class='cell-hang'><view class='cell-label'>校区：</view>
           <view class='cell-picker'><picker bindchange="bindPickerSchool" value="{{indexschool}}" range="{{school}}">

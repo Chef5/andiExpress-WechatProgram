@@ -7,7 +7,7 @@ navigator,view{
 }
 .hd{
   height: 320rpx;
-  background-color: #000033;
+  background-color: #02295c;
   color: white;
   font-size: 60rpx;
   display: flex;
@@ -50,6 +50,6 @@ navigator,view{
   overflow: hidden;
 }
 .btn1{
-   border: 1rpx solid #000035c2;
+   border: 1rpx solid #02295c;
    margin-top: 10rpx;
 }

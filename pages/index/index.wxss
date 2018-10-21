@@ -38,6 +38,15 @@ view{
   justify-content: space-between;
   box-sizing: border-box;
 }
+/* .weui-cell_access{
+  display: flex;flex-direction: row;
+} */
+.weui-cell__f1{
+  width: 70rpx;
+}
+.weui-cell__f2{
+  width: 580rpx;
+}
 .weui-cell__hd{
   margin-top: 30rpx;
   padding:20rpx 0rpx 20rpx 40rpx;
@@ -53,9 +62,9 @@ view{
 }
 .btn1{
   margin-top: 10rpx;
-  color: #c50808c2;
+  color: #c50808;
   margin-left: 500rpx;
-  border: 1rpx solid #c50808c2; 
+  border: 1rpx solid #c50808; 
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,8 +73,8 @@ view{
 .btn2{
   width: 40%;
   margin-top: 10rpx;
-  border: 1rpx solid rgb(72, 132, 167);
-  color: rgb(72, 132, 167);
+  border: 1rpx solid #02295c;
+  color: #02295c;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -82,12 +91,12 @@ view{
   border: 0; 
 }
 .btn4{
-   width: 70%;
+   width: 65%;
    height: 100rpx;
-  margin-bottom: 10rpx;
-  margin-top: 30rpx;
-  border: 1rpx solid rgb(72, 132, 167);
-  background-color: #000035;
+  margin-bottom: 20rpx;
+  margin-top: 35rpx;
+  border: 1rpx solid #02295c;
+  background-color: #02295c;
   color: whitesmoke;
   display: flex;
   flex-direction: row;

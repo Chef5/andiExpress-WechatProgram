@@ -36,7 +36,7 @@
     <view class='list_two' bindtap='makecall'>
       <view class="weui-cell weui-cell_access_myorder" hover-class="weui-cell_active">
         <image src='../../image/service.png' class='images'></image>
-        <view class='weui-cell__bd'>联系客服</view>
+        <view class='weui-cell__bd'>客服微信</view>
         <view class='weui-cell__ft  '>18841167239</view>
       </view>
     </view>

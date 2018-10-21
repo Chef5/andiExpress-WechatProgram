@@ -9,13 +9,13 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#3B789C",
+    "navigationBarBackgroundColor": "#02295c",
     "navigationBarTitleText": "下单",
     "navigationBarTextStyle": "write"
   },
   "tabBar": {
     "color": "grey",
-    "selectedColor": "#000033",
+    "selectedColor": "#02295c",
     "borderStyle": "black",
     "list": [
       {

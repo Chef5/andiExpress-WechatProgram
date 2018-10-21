@@ -51,8 +51,14 @@ Page({
   },
   //拨打客服电话
   makecall: function () {
-    wx.makePhoneCall({
-      phoneNumber: '18841167239',
+    wx.setClipboardData({
+      data: '18841167239',
+      success: function(){
+        wx.showToast({
+          title: '复制成功',
+          duration:1000,
+        })
+      }
     })
   },
   //清除缓存

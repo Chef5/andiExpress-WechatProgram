@@ -1,0 +1,10 @@
+/* pages/coupon/coupon.wxss */
+.option-icon {
+    margin-right: 5px;
+    vertical-align: middle;
+    width:20px;
+    height: 20px;
+}
+.weui-select_in-select-after {
+    text-align: right;
+}
