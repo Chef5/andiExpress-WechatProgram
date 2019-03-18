@@ -1,5 +1,5 @@
 ## andiExpress-WechatProgram
-这是我做的一个外包小程序，这个小程序是提供给用户使用的小程序（[后台管理小程序点此查看](https://github.com/Patrick-Jun/andiExpressAdmin-WechatProgram)）。主要功能有代取快递用户下单、订单查询和收货地址管理。
+这是我接的一个外包小程序，前端布局及样式由我的小伙伴[Dengxuemei](https://github.com/Dengxuemei)小姐姐编写。这个小程序是提供给用户使用的小程序（[后台管理小程序点此查看](https://github.com/Patrick-Jun/andiExpressAdmin-WechatProgram)）。主要功能有代取快递用户下单、订单查询和收货地址管理。
 
 ## 主要页面展示
 ![image](https://raw.githubusercontent.com/wiki/Patrick-Jun/andiExpress-WechatProgram/img.png)
